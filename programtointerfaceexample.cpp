@@ -1,8 +1,12 @@
 #include <iostream>
 
+class Food{
+    public:
+      virtual int getNutrition()=0;
 
+};
 
-class Sausage{
+class Sausage: public Food{
     
     public:
        int getNutrition(){
@@ -10,22 +14,45 @@ class Sausage{
        }
 };
 
-class Cat{
-    int energy_=0;
+class Fruit: public Food{
     public:
-    void eat(Sausage s){
-       energy_+=s.getNutrition();
+     int getNutrition(){
+        return 100;
+       }
+     
+};
+
+class Cat{
+
+    int energy_=0;
+     Food *f_;
+    public:
+    void eat( ){
+       energy_=energy_+f_->getNutrition();
     }
 
     int currentEnergy(){
         return energy_;
     }
 
+    void setFood(Food *f){
+        f_=f;
+    }
+
 };
 
 int main(){
     Sausage s;
+    Fruit f;
     Cat c;
-    c.eat(s);
-    std::cout<<"the current energy of cat is "<<c.currentEnergy();
+    c.setFood(&s);
+    c.eat();
+    std::cout<<"the current energy is :"<<c.currentEnergy()<<std::endl;
+
+    c.setFood(&f);
+    c.eat();
+    std::cout<<"the current energy is :"<<c.currentEnergy()<<std::endl;
+
+
+    
 }
