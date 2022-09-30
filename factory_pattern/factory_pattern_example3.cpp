@@ -27,12 +27,12 @@ class HtmlButton : public ButtonInterface
 public:
   void render()
   {
-    std::cout << "HtmlButton render function implemented" << std::endl;
+    std::cout << "HtmlButton render function implemented here " << std::endl;
   }
 
   void onClick()
   {
-    std::cout << "HtmlButton onClick function implemented" << std::endl;
+    std::cout << "HtmlButton onClick function implemented here" << std::endl;
   }
 };
 
