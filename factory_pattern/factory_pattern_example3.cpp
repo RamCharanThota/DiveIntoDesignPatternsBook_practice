@@ -71,7 +71,7 @@ public:
 class Application
 {
 public:
-  Dialog* d;
+  Dialog* d=NULL;
   void initialize()
   {
     std::string config = "";
