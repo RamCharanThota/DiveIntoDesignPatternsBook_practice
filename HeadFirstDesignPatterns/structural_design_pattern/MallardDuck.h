@@ -12,6 +12,6 @@ public:
   }
 
   void display() const {
-    std::cout << "mallard dick is displayed" << std::endl;
+    std::cout << "mallard duck is displayed" << std::endl;
   }
 };

@@ -1,15 +1,6 @@
-#include <iostream>
-#include <memory>
+
 #include "MallardDuck.h"
 #include "ToyDuck.h"
-
-
-
-
-
-
-
-
 int main(){
     std::unique_ptr<Duck> mallard=std::make_unique<MallardDuck>();
     mallard->performFly();
