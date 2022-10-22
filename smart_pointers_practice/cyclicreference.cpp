@@ -53,7 +53,7 @@ int main(){
     std::shared_ptr<Daughter> daughter=std::shared_ptr<Daughter>(new Daughter(mother));
 
     mother->setDaughter(daughter);
-    mother->setSon(son);
+    ///mother->setSon(son);
     }
 
     std::cout<<std::endl;
