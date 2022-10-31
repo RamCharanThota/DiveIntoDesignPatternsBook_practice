@@ -36,6 +36,7 @@ class DataSourceDecorator:public DataSource{
     protected:
     DataSource* wrapee_;
     public:
+    DataSourceDecorator()=default;
     DataSourceDecorator(DataSource* source){
         wrapee_=source;
     }
@@ -51,12 +52,15 @@ class DataSourceDecorator:public DataSource{
 class EncryptionDecorator:public DataSourceDecorator{
 
     public:
-
+    EncryptionDecorator(DataSource* source)
+    {
+          wrapee_=source;
+    }
     void writeData(std::string data){
         // encrypte the data here
-        std::string data="encrypted"+data;
+        std::string data1="encrypted"+data;
 
-        wrapee_->writeData(data);
+        wrapee_->writeData(data1);
     }
     std::string readData(){
         std::string encry_data= wrapee_->readData();
@@ -70,11 +74,15 @@ class EncryptionDecorator:public DataSourceDecorator{
 class CompressionDecorator:public DataSourceDecorator{
 
     public:
+    CompressionDecorator(DataSource* source)
+    {
+          wrapee_=source;
+    }
     void writeData(std::string data){
         // compress the data here
-        std::string data="compressed"+data;
+        std::string data1="compressed"+data;
 
-        wrapee_->writeData(data);
+        wrapee_->writeData(data1);
     }
     std::string readData(){
         std::string encry_data= wrapee_->readData();
@@ -90,6 +98,6 @@ int main(){
     source.writeData("salaryrecord");// data is written with plan data
 
     // write data with encrypted data
-    CompressionDecorator cdata(&source);
-    source.
+    CompressionDecorator data(&source);
+    data.writeData("my salary");
 }
