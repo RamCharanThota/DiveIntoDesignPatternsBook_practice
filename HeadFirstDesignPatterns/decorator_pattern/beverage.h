@@ -5,7 +5,8 @@
 using namespace std;
 class Beverage
 {
-  string description_;
+protected:
+  string description_ = "unknown beverage";
 
 public:
   string getDescription()
@@ -13,15 +14,20 @@ public:
     return description_;
   }
 
-  virtual int cost() = 0;
+  virtual float cost() = 0;
 };
 
 class HouseBlend : public Beverage
 {
-  int cost_;
+  float cost_;
 
 public:
-  int cost()
+  HouseBlend()
+  {
+    description_ = "HouseBlend";
+    cost_ = 0.89;
+  }
+  float cost()
   {
     return cost_;
   }
@@ -29,10 +35,15 @@ public:
 
 class DarkRoast : public Beverage
 {
-  int cost_;
+  float cost_;
 
 public:
-  int cost()
+  DarkRoast()
+  {
+    description_ = "DarkRoast";
+    cost_ = 1.5;
+  }
+  float cost()
   {
     return cost_;
   }
@@ -40,10 +51,15 @@ public:
 
 class Espresso : public Beverage
 {
-  int cost_;
+  float cost_;
 
 public:
-  int cost()
+  Espresso()
+  {
+    description_ = "Espressp";
+    cost_ = 1.99;
+  }
+  float cost()
   {
     return cost_;
   }
@@ -51,12 +67,16 @@ public:
 
 class Decaf : public Beverage
 {
-  int cost_;
+  float cost_;
 
 public:
-  int cost()
+  Decaf()
+  {
+    description_ = "Decaf";
+    cost_ = 1.89;
+  }
+  float cost()
   {
     return cost_;
   }
 };
-
