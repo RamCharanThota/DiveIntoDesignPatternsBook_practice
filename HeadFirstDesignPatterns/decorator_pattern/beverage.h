@@ -9,7 +9,7 @@ protected:
   string description_ = "unknown beverage";
 
 public:
-  string getDescription()
+ virtual string getDescription()
   {
     return description_;
   }

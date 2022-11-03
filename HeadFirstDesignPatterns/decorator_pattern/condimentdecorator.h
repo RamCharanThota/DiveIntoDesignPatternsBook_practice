@@ -3,18 +3,16 @@
 #include "memory"
 class CondimentDecorator : public Beverage
 {
-public:
-  CondimentDecorator()=default;
-  virtual string getDescription() = 0;
+protected:
+  CondimentDecorator(std::unique_ptr<Beverage> beverage):beverage_(std::move(beverage)){};
+  std::unique_ptr<Beverage> beverage_;
 };
 
 class Milk :public CondimentDecorator
 {
-   std::unique_ptr<Beverage> beverage_ ;
 public:
-  Milk(std::unique_ptr<Beverage> beverage)
+  Milk(std::unique_ptr<Beverage> beverage):CondimentDecorator(std::move(beverage))
   {
-    beverage_=std::move(beverage);
   }
   float cost()
   {
@@ -29,12 +27,10 @@ public:
 
 class Mocha :public CondimentDecorator
 {
-  std::unique_ptr<Beverage> beverage_;
 
 public:
  Mocha()=default;
-  Mocha(std::unique_ptr<Beverage> beverage){
-    beverage_=std::move(beverage);
+  Mocha(std::unique_ptr<Beverage> beverage):CondimentDecorator(std::move(beverage)){
   }
   float cost()
   {
@@ -49,11 +45,9 @@ public:
 
 class Soy : public CondimentDecorator
 {
-  std::unique_ptr<Beverage> beverage_;
 
 public:
-  Soy(std::unique_ptr<Beverage> beverage){
-    beverage_=std::move(beverage);
+  Soy(std::unique_ptr<Beverage> beverage):CondimentDecorator(std::move(beverage)){
   }
   float cost()
   {
@@ -68,11 +62,8 @@ public:
 
 class Whip :public CondimentDecorator
 {
-  std::unique_ptr<Beverage> beverage_;
-
 public:
-  Whip(std::unique_ptr<Beverage> beverage){
-    beverage_=std::move(beverage);
+  Whip(std::unique_ptr<Beverage> beverage):CondimentDecorator(std::move(beverage)){
   }
   float cost()
   {
