@@ -5,16 +5,29 @@
 using namespace std;
 class Beverage
 {
-protected:
-  string description_ = "unknown beverage";
+
 
 public:
- virtual string getDescription()
+enum Size
+  {
+    Tall,
+    Grande,
+    Venti
+  };
+  virtual string getDescription()
   {
     return description_;
   }
 
   virtual float cost() = 0;
+  virtual void setSize(Size size) = 0;
+  virtual Size getSize() = 0;
+
+  protected:
+  
+
+  string description_ = "unknown beverage";
+  Size size_;
 };
 
 class HouseBlend : public Beverage
@@ -25,11 +38,30 @@ public:
   HouseBlend()
   {
     description_ = "HouseBlend";
-    cost_ = 0.89;
   }
   float cost()
   {
-    return cost_;
+    if (size_ == Tall)
+    {
+      return 0.8;
+    }
+    if (size_ == Grande)
+    {
+      return 0.9;
+    }
+    if (size_ == Venti)
+    {
+      return 1.4;
+    }
+  }
+  void setSize(Size size)
+  {
+    size_ = size;
+  }
+
+  Size getSize()
+  {
+    return size_;
   }
 };
 
@@ -41,11 +73,31 @@ public:
   DarkRoast()
   {
     description_ = "DarkRoast";
-    cost_ = 1.5;
   }
   float cost()
   {
-    return cost_;
+    if (size_ == Tall)
+    {
+      return 0.8;
+    }
+    if (size_ == Grande)
+    {
+      return 0.9;
+    }
+    if (size_ == Venti)
+    {
+      return 1.4;
+    }
+  }
+
+  void setSize(Size size)
+  {
+    size_ = size;
+  }
+
+  Size getSize()
+  {
+    return size_;
   }
 };
 
@@ -57,11 +109,31 @@ public:
   Espresso()
   {
     description_ = "Espressp";
-    cost_ = 1.99;
   }
   float cost()
   {
-    return cost_;
+    if (size_ == Tall)
+    {
+      return 0.8;
+    }
+    if (size_ == Grande)
+    {
+      return 0.9;
+    }
+    if (size_ == Venti)
+    {
+      return 1.4;
+    }
+  }
+
+  void setSize(Size size)
+  {
+    size_ = size;
+  }
+
+  Size getSize()
+  {
+    return size_;
   }
 };
 
@@ -73,10 +145,29 @@ public:
   Decaf()
   {
     description_ = "Decaf";
-    cost_ = 1.89;
   }
   float cost()
   {
-    return cost_;
+    if (size_ == Tall)
+    {
+      return 0.8;
+    }
+    if (size_ == Grande)
+    {
+      return 0.9;
+    }
+    if (size_ == Venti)
+    {
+      return 1.4;
+    }
+  }
+  void setSize(Size size)
+  {
+    size_ = size;
+  }
+
+  Size getSize()
+  {
+    return size_;
   }
 };
