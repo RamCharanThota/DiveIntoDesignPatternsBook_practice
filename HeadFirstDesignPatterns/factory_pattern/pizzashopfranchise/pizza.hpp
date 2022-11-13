@@ -2,233 +2,122 @@
 #define PIZZA_HPP
 #include <iostream>
 #include <string>
+#include <vector>
 
 class Pizza
 {
 protected:
-  std::string name_ = "no string";
+  std::string name;
+  std::string dough;
+  std::string sauce;
+  std::vector<std::string> toppings;
 
 public:
-  virtual void prepare()=0;
-  virtual void brake()=0;
-  virtual void cut()=0;
-  virtual void box()=0;
-};
-
-class NYChessePizza : public Pizza
-{
-public:
-  NYChessePizza()
+ virtual void prepare()
   {
-    name_ = "NYChessePizza";
+    std::cout << "Preparing " << name << "\n";
+    std::cout << "Tossing  " << dough << "\n";
+    std::cout << "Adding  " << sauce << "\n";
+    for (std::string topping : toppings)
+    {
+      std::cout << "Topping " << topping << "\n";
+    }
   }
-  void prepare()
+ virtual void bake()
   {
-    std::cout << "prepareing " << this->name_<<"\n";
+    std::cout << "Bake for 25 minutes at 350"
+              << "\n";
   }
 
-  void brake()
+ virtual void cut()
   {
-    std::cout << "breaking " << this->name_<<"\n";
+    std::cout << "Cutting the Pizza into diagonal slices"
+              << "\n";
   }
 
-  void cut()
+  virtual void box()
   {
-    std::cout << "cutting " << this->name_<<"\n";
-  }
-  void box()
-  {
-    std::cout << "boxing " << this->name_<<"\n";
-  }
-};
-
-class  NYPepperoniPizza : public Pizza
-{
-public:
-  NYPepperoniPizza()
-  {
-    name_ = "NYPepperoniPizza";
-  }
-  void prepare()
-  {
-    std::cout << "prepareing " << this->name_<<"\n";
+    std::cout << "Place pizza in official PizzaStore box"
+              << "\n";
   }
 
-  void brake()
+  virtual std::string getName()
   {
-    std::cout << "breaking " << this->name_<<"\n";
-  }
-
-  void cut()
-  {
-    std::cout << "cutting " << this->name_<<"\n";
-  }
-  void box()
-  {
-    std::cout << "boxing " << this->name_<<"\n";
+    return name;
   }
 };
 
-class NYClaimPizza : public Pizza
+class NYStyleCheesePizza : public Pizza
 {
 public:
-  NYClaimPizza()
+  NYStyleCheesePizza()
   {
-    name_ = "NYClaimPizza";
-  }
-  void prepare()
-  {
-    std::cout << "prepareing " << this->name_<<"\n";
-  }
-
-  void brake()
-  {
-    std::cout << "breaking " << this->name_<<"\n";
-  }
-
-  void cut()
-  {
-    std::cout << "cutting " << this->name_<<"\n";
-  }
-  void box()
-  {
-    std::cout << "boxing " << this->name_<<"\n";
+    name = "NY Style Sauce and Chesse Pizza";
+    dough = "Thin Crust Dough";
+    sauce = "Marinara Sauce";
+    toppings.push_back("Shredded Mozzarealla Cheese");
   }
 };
+class NYPepperoniPizza:public Pizza{
+  public:
+  NYPepperoniPizza(){
+    name = "NY Style Pepperoni Pizza";
+    dough = "Thin Crust Dough";
+    sauce = "Marinara Sauce";
+    toppings.push_back("Shredded Mozzarealla Cheese");
 
-class NYVeggiePizza : public Pizza
-{
-public:
-  NYVeggiePizza()
-  {
-    name_ = "VeggiePizza";
-  }
-  void prepare()
-  {
-    std::cout << "prepareing " << this->name_<<"\n";
   }
 
-  void brake()
-  {
-    std::cout << "breaking " << this->name_<<"\n";
-  }
-
-  void cut()
-  {
-    std::cout << "cutting " << this->name_<<"\n";
-  }
-  void box()
-  {
-    std::cout << "boxing " << this->name_<<"\n";
-  }
 };
 
-class ChicagoChessePizza : public Pizza
-{
-public:
-  ChicagoChessePizza()
-  {
-    name_ = "ChicagoChesse Pizza";
-  }
-  void prepare()
-  {
-    std::cout << "prepareing " << this->name_<<"\n";
+class NYVeggiePizza:public Pizza{
+  public:
+  NYVeggiePizza(){
+    name = "NY Style Veggie Pizza";
+    dough = "Thin Crust Dough";
+    sauce = "Marinara Sauce";
+    toppings.push_back("Shredded Mozzarealla Cheese");
+
   }
 
-  void brake()
-  {
-    std::cout << "breaking " << this->name_<<"\n";
-  }
-
-  void cut()
-  {
-    std::cout << "cutting " << this->name_<<"\n";
-  }
-  void box()
-  {
-    std::cout << "boxing " << this->name_<<"\n";
-  }
 };
 
-class ChicagoPepperoniPizza : public Pizza
+class ChicagoCheesePizza : public Pizza
 {
 public:
-  ChicagoPepperoniPizza()
+  ChicagoCheesePizza()
   {
-    name_ = "ChicagoPepperoniPizza";
+    name = "Chicago Style Deep Dish Chesse Pizza";
+    dough = "Extra Thick Crust Dough";
+    sauce = "Plum Tomato Sauce";
+    toppings.push_back("Grated Reggiano Cheese");
   }
-  void prepare()
-  {
-    std::cout << "prepareing " << this->name_<<"\n";
-  }
-
-  void brake()
-  {
-    std::cout << "breaking " << this->name_<<"\n";
-  }
-
-  void cut()
-  {
-    std::cout << "cutting " << this->name_<<"\n";
-  }
-  void box()
-  {
-    std::cout << "boxing " << this->name_<<"\n";
+  void cut(){
+    std::cout<<"Cutting the Pizza into Square Slices"<<"\n";
   }
 };
+class ChicagoPepperoniPizza:public Pizza{
+  public:
+  ChicagoPepperoniPizza(){
+   name = "Chicago Style Pepperoni Pizza";
+    dough = "Extra Thick Crust Dough";
+    sauce = "Plum Tomato Sauce";
+    toppings.push_back("Grated Reggiano Cheese");
 
-class ChicagoClaimPizza : public Pizza
-{
-public:
-  ChicagoClaimPizza()
-  {
-    name_ = "ChicagoClaimPizza";
-  }
-  void prepare()
-  {
-    std::cout << "prepareing " << this->name_<<"\n";
   }
 
-  void brake()
-  {
-    std::cout << "breaking " << this->name_<<"\n";
-  }
-
-  void cut()
-  {
-    std::cout << "cutting " << this->name_<<"\n";
-  }
-  void box()
-  {
-    std::cout << "boxing " << this->name_<<"\n";
-  }
 };
 
-class ChicagoVeggiePizza : public Pizza
-{
-public:
-  ChicagoVeggiePizza()
-  {
-    name_ = "ChicagoVeggiePizza";
-  }
-  void prepare()
-  {
-    std::cout << "prepareing " << this->name_<<"\n";
+class ChicagoVeggiePizza:public Pizza{
+  public:
+  ChicagoVeggiePizza(){
+    name = "Chicago Style Veggie Pizza";
+    dough = "Thin Crust Dough";
+    sauce = "Marinara Sauce";
+    toppings.push_back("Shredded Mozzarealla Cheese");
+
   }
 
-  void brake()
-  {
-    std::cout << "breaking " << this->name_<<"\n";
-  }
-
-  void cut()
-  {
-    std::cout << "cutting " << this->name_<<"\n";
-  }
-  void box()
-  {
-    std::cout << "boxing " << this->name_<<"\n";
-  }
 };
 
 #endif

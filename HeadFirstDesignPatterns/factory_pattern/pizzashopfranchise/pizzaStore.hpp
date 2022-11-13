@@ -16,7 +16,7 @@ public:
   {
     std::unique_ptr<Pizza> pizza = createPizza(type);
     pizza->prepare();
-    pizza->brake();
+    pizza->bake();
     pizza->cut();
     pizza->box();
 
@@ -33,7 +33,7 @@ class NYStylePizzaStore:public PizzaStore{
     std::unique_ptr<Pizza> pza_ptr=nullptr;
     if (type.compare("cheese") == 0)
     {
-      pza_ptr = std::make_unique<NYChessePizza>();
+      pza_ptr = std::make_unique<NYStyleCheesePizza>();
     }else if (type.compare("Pepperoni") == 0)
     {
       pza_ptr = std::make_unique<NYPepperoniPizza>();
@@ -55,7 +55,7 @@ class ChicagoStylePizzaStore:public PizzaStore{
     std::unique_ptr<Pizza> pza_ptr=nullptr;
     if (type.compare("cheese") == 0)
     {
-      pza_ptr = std::make_unique<ChicagoChessePizza>();
+      pza_ptr = std::make_unique<ChicagoCheesePizza>();
     }else if (type.compare("Pepperoni") == 0)
     {
       pza_ptr = std::make_unique<ChicagoPepperoniPizza>();

@@ -4,6 +4,8 @@
 
 int main(){
     std::unique_ptr<PizzaStore> nypizzastr= std::make_unique<NYStylePizzaStore>();
-    auto pizaa=nypizzastr->orderPizza("cheese");
+    auto pizza=nypizzastr->createPizza("cheese");
+    pizza->prepare();
+    pizza->bake();
     
 }
