@@ -13,7 +13,7 @@ protected:
   std::vector<std::string> toppings;
 
 public:
- virtual void prepare()
+  virtual void prepare()
   {
     std::cout << "Preparing " << name << "\n";
     std::cout << "Tossing  " << dough << "\n";
@@ -23,13 +23,13 @@ public:
       std::cout << "Topping " << topping << "\n";
     }
   }
- virtual void bake()
+  virtual void bake()
   {
     std::cout << "Bake for 25 minutes at 350"
               << "\n";
   }
 
- virtual void cut()
+  virtual void cut()
   {
     std::cout << "Cutting the Pizza into diagonal slices"
               << "\n";
@@ -58,28 +58,28 @@ public:
     toppings.push_back("Shredded Mozzarealla Cheese");
   }
 };
-class NYPepperoniPizza:public Pizza{
-  public:
-  NYPepperoniPizza(){
+class NYPepperoniPizza : public Pizza
+{
+public:
+  NYPepperoniPizza()
+  {
     name = "NY Style Pepperoni Pizza";
     dough = "Thin Crust Dough";
     sauce = "Marinara Sauce";
     toppings.push_back("Shredded Mozzarealla Cheese");
-
   }
-
 };
 
-class NYVeggiePizza:public Pizza{
-  public:
-  NYVeggiePizza(){
+class NYVeggiePizza : public Pizza
+{
+public:
+  NYVeggiePizza()
+  {
     name = "NY Style Veggie Pizza";
     dough = "Thin Crust Dough";
     sauce = "Marinara Sauce";
     toppings.push_back("Shredded Mozzarealla Cheese");
-
   }
-
 };
 
 class ChicagoCheesePizza : public Pizza
@@ -92,32 +92,74 @@ public:
     sauce = "Plum Tomato Sauce";
     toppings.push_back("Grated Reggiano Cheese");
   }
-  void cut(){
-    std::cout<<"Cutting the Pizza into Square Slices"<<"\n";
+  void cut()
+  {
+    std::cout << "Cutting the Pizza into Square Slices"
+              << "\n";
   }
 };
-class ChicagoPepperoniPizza:public Pizza{
-  public:
-  ChicagoPepperoniPizza(){
-   name = "Chicago Style Pepperoni Pizza";
+class ChicagoPepperoniPizza : public Pizza
+{
+public:
+  ChicagoPepperoniPizza()
+  {
+    name = "Chicago Style Pepperoni Pizza";
     dough = "Extra Thick Crust Dough";
     sauce = "Plum Tomato Sauce";
     toppings.push_back("Grated Reggiano Cheese");
-
   }
-
 };
 
-class ChicagoVeggiePizza:public Pizza{
-  public:
-  ChicagoVeggiePizza(){
+class ChicagoVeggiePizza : public Pizza
+{
+public:
+  ChicagoVeggiePizza()
+  {
     name = "Chicago Style Veggie Pizza";
     dough = "Thin Crust Dough";
     sauce = "Marinara Sauce";
     toppings.push_back("Shredded Mozzarealla Cheese");
-
   }
+};
 
+class CaliforniaCheesePizza : public Pizza
+{
+public:
+  CaliforniaCheesePizza()
+  {
+    name = "California Style Deep Dish Chesse Pizza";
+    dough = "Extra Thick Crust Dough";
+    sauce = "Plum Tomato Sauce";
+    toppings.push_back("Grated Reggiano Cheese");
+  }
+  void cut()
+  {
+    std::cout << "Cutting the Pizza into Square Slices"
+              << "\n";
+  }
+};
+class CaliforniaPepperoniPizza : public Pizza
+{
+public:
+  CaliforniaPepperoniPizza()
+  {
+    name = "California Style Pepperoni Pizza";
+    dough = "Extra Thick Crust Dough";
+    sauce = "Plum Tomato Sauce";
+    toppings.push_back("Grated Reggiano Cheese");
+  }
+};
+
+class CaliforniaVeggiePizza : public Pizza
+{
+public:
+  CaliforniaVeggiePizza()
+  {
+    name = "California Style Veggie Pizza";
+    dough = "Thin Crust Dough";
+    sauce = "Marinara Sauce";
+    toppings.push_back("Shredded Mozzarealla Cheese");
+  }
 };
 
 #endif

@@ -71,4 +71,26 @@ class ChicagoStylePizzaStore:public PizzaStore{
   }
 };
 
+class CaliforniaStylePizzaStore:public PizzaStore{
+  public:
+  std::unique_ptr<Pizza> createPizza(std::string type){
+    std::unique_ptr<Pizza> pza_ptr=nullptr;
+    if (type.compare("cheese") == 0)
+    {
+      pza_ptr = std::make_unique<CaliforniaCheesePizza>();
+    }else if (type.compare("Pepperoni") == 0)
+    {
+      pza_ptr = std::make_unique<CaliforniaPepperoniPizza>();
+    }else if (type.compare("veggie") == 0)
+    {
+      pza_ptr = std::make_unique<CaliforniaVeggiePizza>();
+    }else{
+        std::cout<<"pizza with required name is not avaiable"<<"\n";
+        return nullptr;
+    }
+
+    return std::move(pza_ptr);
+  }
+};
+
 #endif
