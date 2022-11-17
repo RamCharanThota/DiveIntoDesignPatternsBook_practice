@@ -15,7 +15,7 @@ protected:
   std::unique_ptr<Dough> dough_ptr=nullptr;
   std::unique_ptr<Sauce> sauce_ptr=nullptr;
   std::unique_ptr<Cheese> cheese_ptr=nullptr;
-  std::vector<std::unique_ptr<Veggies> > veggies_ptr={nullptr};
+  std::vector<std::unique_ptr<Veggies> > veggies_ptr;
   std::unique_ptr<Pepperoni> pepperoni_ptr=nullptr;
   std::unique_ptr<Clams> claims_ptr=nullptr;
 public:
@@ -57,7 +57,7 @@ class CheesePizza:public Pizza{
 
   }
   void prepare(){
-    std::cout<<"Prepareing the "<<name_<<"/n";
+    std::cout<<"Prepareing the "<<name_<<"\n";
     dough_ptr=std::move(ingredient_factory_ptr_->createDough());
     sauce_ptr=std::move(ingredient_factory_ptr_->createSauce());
     cheese_ptr=std::move(ingredient_factory_ptr_->createCheese());
@@ -75,7 +75,7 @@ class ClamPizza:public Pizza{
 
   }
   void prepare(){
-    std::cout<<"Prepareing the "<<name_<<"/n";
+    std::cout<<"Prepareing the "<<name_<<"\n";
     dough_ptr=std::move(ingredient_factory_ptr_->createDough());
     sauce_ptr=std::move(ingredient_factory_ptr_->createSauce());
     cheese_ptr=std::move(ingredient_factory_ptr_->createCheese());

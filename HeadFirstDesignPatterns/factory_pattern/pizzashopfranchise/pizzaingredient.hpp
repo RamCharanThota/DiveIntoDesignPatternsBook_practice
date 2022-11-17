@@ -58,7 +58,7 @@ public:
 class ReggianoCheese : public Cheese
 {
     public:
-    ReggianoCheese(std::string name){
+    ReggianoCheese(){
         name_="ReggianoCheese";
     }
 
@@ -133,7 +133,7 @@ public:
   virtual std::string getName()=0;
 };
 
-class SlicedPepperoni :public Sauce
+class SlicedPepperoni :public Pepperoni
 {
     public:
     SlicedPepperoni(){

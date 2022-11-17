@@ -18,6 +18,7 @@ public:
 class NYPizzaIngredientFactory : public PizzaIngredientFactory
 {
 public:
+ NYPizzaIngredientFactory()=default;
   std::unique_ptr<Dough> createDough()
   {
     return std::make_unique<ThinCrustDough>();
@@ -33,21 +34,27 @@ public:
     return std::make_unique<ReggianoCheese>();
   }
 
-  std::vector<std::unique_ptr<Veggies>> createVeggies()
+  std::vector<std::unique_ptr<Veggies>>  createVeggies()
   {
     std::vector<std::unique_ptr<Veggies>> veggies;
-    veggies.push_back(std::make_unique<Garlic>());
-    veggies.push_back(std::make_unique<Onion>());
-    veggies.push_back(std::make_unique<Mushroom>());
-    veggies.push_back(std::make_unique<RedPepper>());
+    veggies.push_back(std::move(std::make_unique<Garlic>()));
+    veggies.push_back(std::move(std::make_unique<Onion>()));
+    veggies.push_back(std::move(std::make_unique<Mushroom>()));
+    veggies.push_back(std::move(std::make_unique<RedPepper>()));
 
-    return veggies;
+    return std::move(veggies);
+  }
+
+  std::unique_ptr<Pepperoni> createPepperoni(){
+
+    return std::make_unique<SlicedPepperoni>();
   }
 
   std::unique_ptr<Clams> createClams()
   {
     return std::make_unique<FreshClams>();
   }
+  ~ NYPizzaIngredientFactory()=default;
 };
 
 #endif
