@@ -1,17 +1,53 @@
 #ifndef PIZZAINGREDIENTFACTORY_HPP
 #define PIZZAINGREDIENTFACTORY_HPP
 #include "pizzaingredient.hpp"
-#include<vector>
-#include<memory>
+#include <vector>
+#include <memory>
 
-class PizzaIngredientFactory{
-    public:
-    std::unique_ptr<Dough> createDough();
-    std::unique_ptr<Sauce> createSauce();
-    std::unique_ptr<Cheese> createCheese();
-    std::vector<std::unique_ptr<Veggies>> createVeggies();
-    std::unique_ptr<Pepperoni> createPepperoni();
-    std::unique_ptr<Clams> createClams();
+class PizzaIngredientFactory
+{
+public:
+  virtual std::unique_ptr<Dough> createDough() = 0;
+  virtual std::unique_ptr<Sauce> createSauce() = 0;
+  virtual std::unique_ptr<Cheese> createCheese() = 0;
+  virtual std::vector<std::unique_ptr<Veggies>> createVeggies() = 0;
+  virtual std::unique_ptr<Pepperoni> createPepperoni() = 0;
+  virtual std::unique_ptr<Clams> createClams() = 0;
+};
+
+class NYPizzaIngredientFactory : public PizzaIngredientFactory
+{
+public:
+  std::unique_ptr<Dough> createDough()
+  {
+    return std::make_unique<ThinCrustDough>();
+  }
+
+  std::unique_ptr<Sauce> createSauce()
+  {
+    return std::make_unique<MarinaraSauce>();
+  }
+
+  std::unique_ptr<Cheese> createCheese()
+  {
+    return std::make_unique<ReggianoCheese>();
+  }
+
+  std::vector<std::unique_ptr<Veggies>> createVeggies()
+  {
+    std::vector<std::unique_ptr<Veggies>> veggies;
+    veggies.push_back(std::make_unique<Garlic>());
+    veggies.push_back(std::make_unique<Onion>());
+    veggies.push_back(std::make_unique<Mushroom>());
+    veggies.push_back(std::make_unique<RedPepper>());
+
+    return veggies;
+  }
+
+  std::unique_ptr<Clams> createClams()
+  {
+    return std::make_unique<FreshClams>();
+  }
 };
 
 #endif

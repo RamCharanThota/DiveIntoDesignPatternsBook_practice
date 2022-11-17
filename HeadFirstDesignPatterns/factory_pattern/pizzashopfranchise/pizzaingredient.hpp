@@ -12,7 +12,7 @@ public:
   virtual std::string getName()=0;
 };
 
-class ThinCrustDough : Dough
+class ThinCrustDough :public Dough
 {
     public:
     ThinCrustDough(){
@@ -34,7 +34,7 @@ public:
   virtual std::string getName()=0;
 };
 
-class MarinaraSauce : Sauce
+class MarinaraSauce :public Sauce
 {
     public:
     MarinaraSauce(){
@@ -55,7 +55,7 @@ public:
   virtual std::string getName()=0;
 };
 
-class ReggianoCheese : Cheese
+class ReggianoCheese : public Cheese
 {
     public:
     ReggianoCheese(std::string name){
@@ -76,7 +76,7 @@ public:
   virtual std::string getName()=0;
 };
 
-class Garlic : Veggies
+class Garlic :public Veggies
 {
     public:
     Garlic(){
@@ -88,7 +88,7 @@ class Garlic : Veggies
     }
 };
 
-class Onion : Veggies
+class Onion :public Veggies
 {
     public:
     Onion(){
@@ -100,7 +100,7 @@ class Onion : Veggies
     }
 };
 
-class Mushroom : Veggies
+class Mushroom :public Veggies
 {
     public:
     Mushroom(){
@@ -133,7 +133,7 @@ public:
   virtual std::string getName()=0;
 };
 
-class SlicedPepperoni : Sauce
+class SlicedPepperoni :public Sauce
 {
     public:
     SlicedPepperoni(){
@@ -154,7 +154,7 @@ public:
   virtual std::string getName()=0;
 };
 
-class FreshClams : Clams
+class FreshClams :public Clams
 {
     public:
     FreshClams(){

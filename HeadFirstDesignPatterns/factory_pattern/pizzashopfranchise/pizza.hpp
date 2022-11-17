@@ -3,26 +3,23 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include<memory>
+
+
+#include"pizzaingredientfactory.hpp"
 
 class Pizza
 {
 protected:
-  std::string name;
-  std::string dough;
-  std::string sauce;
-  std::vector<std::string> toppings;
-
+  std::string name_;
+  std::unique_ptr<Dough> dough_ptr=nullptr;
+  std::unique_ptr<Sauce> sauce_ptr=nullptr;
+  std::unique_ptr<Cheese> cheese_ptr=nullptr;
+  std::vector<std::unique_ptr<Veggies> > veggies_ptr={nullptr};
+  std::unique_ptr<Pepperoni> pepperoni_ptr=nullptr;
+  std::unique_ptr<Clams> claims_ptr=nullptr;
 public:
-  virtual void prepare()
-  {
-    std::cout << "Preparing " << name << "\n";
-    std::cout << "Tossing  " << dough << "\n";
-    std::cout << "Adding  " << sauce << "\n";
-    for (std::string topping : toppings)
-    {
-      std::cout << "Topping " << topping << "\n";
-    }
-  }
+  virtual void prepare()=0;
   virtual void bake()
   {
     std::cout << "Bake for 25 minutes at 350"
@@ -41,125 +38,51 @@ public:
               << "\n";
   }
 
-  virtual std::string getName()
-  {
-    return name;
-  }
+ void setName(std::string name){
+  name_=name;
+ }
+
+ std::string getName(){
+  return name_;
+
+ }
 };
 
-class NYStyleCheesePizza : public Pizza
-{
-public:
-  NYStyleCheesePizza()
-  {
-    name = "NY Style Sauce and Chesse Pizza";
-    dough = "Thin Crust Dough";
-    sauce = "Marinara Sauce";
-    toppings.push_back("Shredded Mozzarealla Cheese");
+class CheesePizza:public Pizza{
+  std::unique_ptr<PizzaIngredientFactory> ingredient_factory_ptr_;
+
+  public:
+  CheesePizza(std::unique_ptr<PizzaIngredientFactory> ingredient_factory_ptr){
+    ingredient_factory_ptr_=std::move(ingredient_factory_ptr);
+
   }
-};
-class NYPepperoniPizza : public Pizza
-{
-public:
-  NYPepperoniPizza()
-  {
-    name = "NY Style Pepperoni Pizza";
-    dough = "Thin Crust Dough";
-    sauce = "Marinara Sauce";
-    toppings.push_back("Shredded Mozzarealla Cheese");
+  void prepare(){
+    std::cout<<"Prepareing the "<<name_<<"/n";
+    dough_ptr=std::move(ingredient_factory_ptr_->createDough());
+    sauce_ptr=std::move(ingredient_factory_ptr_->createSauce());
+    cheese_ptr=std::move(ingredient_factory_ptr_->createCheese());
+
   }
+
 };
 
-class NYVeggiePizza : public Pizza
-{
-public:
-  NYVeggiePizza()
-  {
-    name = "NY Style Veggie Pizza";
-    dough = "Thin Crust Dough";
-    sauce = "Marinara Sauce";
-    toppings.push_back("Shredded Mozzarealla Cheese");
+class ClamPizza:public Pizza{
+  std::unique_ptr<PizzaIngredientFactory> ingredient_factory_ptr_;
+
+  public:
+  ClamPizza(std::unique_ptr<PizzaIngredientFactory> ingredient_factory_ptr){
+    ingredient_factory_ptr_=std::move(ingredient_factory_ptr);
+
   }
+  void prepare(){
+    std::cout<<"Prepareing the "<<name_<<"/n";
+    dough_ptr=std::move(ingredient_factory_ptr_->createDough());
+    sauce_ptr=std::move(ingredient_factory_ptr_->createSauce());
+    cheese_ptr=std::move(ingredient_factory_ptr_->createCheese());
+
+  }
+
 };
 
-class ChicagoCheesePizza : public Pizza
-{
-public:
-  ChicagoCheesePizza()
-  {
-    name = "Chicago Style Deep Dish Chesse Pizza";
-    dough = "Extra Thick Crust Dough";
-    sauce = "Plum Tomato Sauce";
-    toppings.push_back("Grated Reggiano Cheese");
-  }
-  void cut()
-  {
-    std::cout << "Cutting the Pizza into Square Slices"
-              << "\n";
-  }
-};
-class ChicagoPepperoniPizza : public Pizza
-{
-public:
-  ChicagoPepperoniPizza()
-  {
-    name = "Chicago Style Pepperoni Pizza";
-    dough = "Extra Thick Crust Dough";
-    sauce = "Plum Tomato Sauce";
-    toppings.push_back("Grated Reggiano Cheese");
-  }
-};
-
-class ChicagoVeggiePizza : public Pizza
-{
-public:
-  ChicagoVeggiePizza()
-  {
-    name = "Chicago Style Veggie Pizza";
-    dough = "Thin Crust Dough";
-    sauce = "Marinara Sauce";
-    toppings.push_back("Shredded Mozzarealla Cheese");
-  }
-};
-
-class CaliforniaCheesePizza : public Pizza
-{
-public:
-  CaliforniaCheesePizza()
-  {
-    name = "California Style Deep Dish Chesse Pizza";
-    dough = "Extra Thick Crust Dough";
-    sauce = "Plum Tomato Sauce";
-    toppings.push_back("Grated Reggiano Cheese");
-  }
-  void cut()
-  {
-    std::cout << "Cutting the Pizza into Square Slices"
-              << "\n";
-  }
-};
-class CaliforniaPepperoniPizza : public Pizza
-{
-public:
-  CaliforniaPepperoniPizza()
-  {
-    name = "California Style Pepperoni Pizza";
-    dough = "Extra Thick Crust Dough";
-    sauce = "Plum Tomato Sauce";
-    toppings.push_back("Grated Reggiano Cheese");
-  }
-};
-
-class CaliforniaVeggiePizza : public Pizza
-{
-public:
-  CaliforniaVeggiePizza()
-  {
-    name = "California Style Veggie Pizza";
-    dough = "Thin Crust Dough";
-    sauce = "Marinara Sauce";
-    toppings.push_back("Shredded Mozzarealla Cheese");
-  }
-};
 
 #endif
