@@ -31,7 +31,7 @@ class Singleton{
     }
 };
 
-Singleton* Singleton::singleton_instance_;
+Singleton* Singleton::singleton_instance_=nullptr;
 
 int main(){
     Singleton* pattern=Singleton::createInstance();
